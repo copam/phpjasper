@@ -1,54 +1,45 @@
-# Reports for PHP and Laravel 5.*, with JasperReports.
+# PHPJasper
 
 [![License](https://poser.pugx.org/copam/phpjasper/license)](https://packagist.org/packages/copam/phpjasper) [![Total Downloads](https://poser.pugx.org/copam/phpjasper/downloads)](https://packagist.org/packages/copam/phpjasper)
 
-**Is using Linux servers?**
+**Nota para servidores Linux**
 
-Do not forget to grant permission 777 for the directory **/vendor/copam/phpjasper/src/JasperStarter/bin** and the file binary **jasperstarter**
+Não esqueça de fornecer permissão 777 para o diretório **/vendor/copam/phpjasper/src/JasperStarter/bin** e o arquivo binário **jasperstarter**
 
-##Introduction
+##Introdução
+Este pacote é a solução perfeita para compilar e processar relatórios Jasper (.jrxml & .jasper) com PHP puro ou através do Laravel Framework.
 
-This package aims to be a solution to compile and process JasperReports (.jrxml & .jasper files).
+###Por quê preciso do PHPJasper?
 
-###Why?
+Alguma vez você precisou de um relatório complexo em PHP para seu sistema web?
 
-Did you ever had to create a good looking Invoice with a lot of fields for your great web app?
+Eu já precisei e fui em busca de algumas soluções, a maioria delas é complexa e você precisa escrever *HTML* + *CSS* para gerar um *PDF*, isso não faz sentido, além de ser muito trabalhoso :)
 
-I had to, and the solutions out there were not perfect. Generating *HTML* + *CSS* to make a *PDF*? WTF? That doesn't make any sense! :)
+Apresento para vocês **JasperReports** a melhor solução open source que existe para relatórios.
 
-Then I found **JasperReports** the best open source solution for reporting.
+###O que eu posso fazer com isso?
 
-###What can I do with this?
+**Texto tirado do site JasperSoft:**
 
-Well, everything. JasperReports is a powerful tool for **reporting** and **BI**.
+> A biblioteca JasperReports é o mecanismo de geração de relatórios de código aberto mais popular do mundo. É inteiramente escrito em Java e é capaz de usar dados provenientes de qualquer tipo de fonte de dados e gerar documentos perfeitos que podem ser visualizado, impressom ou exportadom em uma variedade de formatos de documentos, incluindo HTML, PDF, Excel, OpenOffice e Word .
 
-**From their website:**
+*Exemplos do que você pode fazer:*
 
-> The JasperReports Library is the world's most popular open source reporting engine. It is entirely written in Java and it is able to use data coming from any kind of data source and produce pixel-perfect documents that can be viewed, printed or exported in a variety of document formats including HTML, PDF, Excel, OpenOffice and Word.
+* Faturas
+* Relatórios
+* Listas
 
-It is recommended using [Jaspersoft Studio](http://community.jaspersoft.com/project/jaspersoft-studio) to build your reports, connect it to your datasource (ex: MySQL, POSTGRES), loop thru the results and output it to PDF, XLS, DOC, RTF, ODF, etc.
-
-*Some examples of what you can do:*
-
-* Invoices
-* Reports
-* Listings
-
-Package to generate reports with [JasperReports 6.3.1](http://community.jaspersoft.com/project/jaspersoft-studio/releases) library through [JasperStarter v3](http://jasperstarter.sourceforge.net/) command-line tool.
-
-##Requirements
+##Requisitos
 
 * Java JDK 1.8
-* PHP [exec()](http://php.net/manual/function.exec.php) function
-* [optional] [Mysql Connector](http://dev.mysql.com/downloads/connector/j/) (if you want to use database)
-* [optional] [PostgreSQL Connector](https://jdbc.postgresql.org/download.html) (if you want to use database)
-* [optional] [Jaspersoft Studio](http://community.jaspersoft.com/project/jaspersoft-studio) (to draw and compile your reports)
+* PHP [exec()](http://php.net/manual/function.exec.php)
+* [opcional] [Mysql Connector](http://dev.mysql.com/downloads/connector/j/) (se você pretende usar essa base dados)
+* [opcional] [PostgreSQL Connector](https://jdbc.postgresql.org/download.html) (se você pretende usar essa base dados)
+* [opcional] [Jaspersoft Studio](http://community.jaspersoft.com/project/jaspersoft-studio) (para criar e compilar seus relatórios)
 
-##Installation
+###Notas sobre o Java
 
-###Java
-
-Check if you already have Java installed:
+Verifique se o Java está instalado executando o comando:
 
 ```
 $ java -version
@@ -57,29 +48,29 @@ Java(TM) SE Runtime Environment (build 1.8.0_101-b13)
 Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
 ```
 
-If you get:
+Se você obter esse retorno:
 
     command not found: java
 
-Then install it with: (Ubuntu/Debian)
+Instale o java no: (Ubuntu/Debian)
 
     $ sudo apt-get install default-jdk
 
-To install on: (centOS/Fedora)
+Para instalar no: (centOS/Fedora)
 
     # yum install java-1.8.0-openjdk.x86_64
 
-To install on windows visit the link-> [JDK](http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html) and look for the most appropriate version for your system.
+Para o windows siga o link-> [JDK](http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html) e procure a versão mais apropriada para seu Sistema Operacional.
 
-Now run the `java -version` again and check if the output is ok.
+Execute o novamente o comando `java -version` e verifique se a saída está ok.
 
-##Installation
+##Instalação
 
-1. Install [Composer](http://getcomposer.org) if you don't have it.
+1. Instale o [Composer](http://getcomposer.org) se você ainda não possui e então rode o comando:
 ```
 composer require copam/phpjasper
 ```
-Or in your 'composer.json' file add:
+Crie um arquivo 'composer.json' e escreva o seguinte código:
 
 ```javascript
 {
@@ -89,24 +80,24 @@ Or in your 'composer.json' file add:
 }
 ```
 
-And the just run:
+Rode o comando:
 
     composer install
 
-and thats it.
+Você acaba de instalar PHPJasper
 
-##Examples
+##Exemplos
 
-###The *Hello World* example.
+###O exemplo *Hello World*.
 
-Go to the examples directory in the root of the repository (`vendor/copam/phpjasper/examples`).
-Open the `hello_world.jrxml` file with Jaspersoft Studio or with your favorite text editor and take a look at the source code.
+Vá para o diretório de exemplos na raiz do repositório (`vendor/copam/phpjasper/examples`).
+Abra o arquivo `hello_world.jrxml` com o JasperStudio ou seu editor favorito  e dê uma olhada no código.
 
-#### Compiling
+#### Compilando
 
-First we need to compile our `JRXML` file into a `JASPER` binary file. We just have to do this one time.
+Primeiro precisamos compilar o arquivo com a extensão `.JRXML` em um arquivo binário do tipo `.JASPER`
 
-**Note:** You don't need to do this step if you are using *Jaspersoft Studio*. You can compile directly within the program.
+**Nota:** Caso você não queira usar *Jaspersoft Studio*. É possivel compilar o seu arquivo .jrxml da seguinte forma:
 
 ```php
 
@@ -120,11 +111,11 @@ $jasper = new JasperPHP;
 $jasper->compile($input)->execute();
 ```
 
-This commando will compile the `hello_world.jrxml` source file to a `hello_world.jasper` file.
+Esta comando compila o arquivo fonte `hello_world.jrxml` em um arquivo `hello_world.jasper`
 
 ####Processing
 
-Now lets process the report that we compile before:
+Agora vamos processar o nosso relatório:
 
 ```php
 
@@ -148,9 +139,9 @@ Now check the examples folder! :) Great right? You now have 2 files, `hello_worl
 
 Check the *API* of the  `compile` and `process` functions in the file `src/JasperPHP/JasperPHP.php` file.
 
-####Listing Parameters
+####Listando parâmetros
 
-Querying the jasper file to examine parameters available in the given jasper report file:
+Consultando o arquivo jasper para examinar os parâmetros disponíveis no relatório:
 
 ```php
 
@@ -167,9 +158,9 @@ foreach($output as $parameter_description)
     print $parameter_description . '<pre>';
 ```
 
-###Advanced example - using a database
+###Relatórios a partir de um banco de dados
 
-We can also specify parameters for connecting to database:
+Adicione os parâmetros específicos para seu banco de dados
 
 ```php
 
@@ -196,13 +187,13 @@ $jasper->process(
 )->execute();
 ```
 
-###Using JasperPHP with Laravel 5.*
+###Usando JasperPHP com Laravel 5.*
 
-1. Install [Composer](http://getcomposer.org) if you don't have it.
+1. Instale o  [Composer](http://getcomposer.org)
 ```
 composer require copam/phpjasper
 ```
-Or in your 'composer.json' file add:
+Crie um arquivo 'composer.json':
 
 ```javascript
 {
@@ -211,25 +202,25 @@ Or in your 'composer.json' file add:
     }
 }
 ```
-2. And the just run:
+2. Rode:
 
     **composer update**
 
-3. Add to your config/app.php providers array:
+3. Adicione o provider ao array providers em config/app.php:
 
     **JasperPHP\JasperPHPServiceProvider::class,**
 
-4. Create a folder **/report** on **/public directory**
+4. Crie a pasta **/report** em **/public directory**
 
-5. Copy the file **hello_world.jrxml** in **/vendor/copam/phpjasper/examples** from directory: **/public/report**
+5. Copie o arquivo **hello_world.jrxml** em **/vendor/copam/phpjasper/examples** para a pasta: **/public/report**
 
-6. Run **php artisan serve**
+6. Rode **php artisan serve**
 
-7. Access **localhost:8000/reports**
+7. Acesse **localhost:8000/reports**
 
-8. Check the directory **/public/report**. You now have 3 files, `hello_world.pdf`, `hello_world.rtf` and `hello_world.xml`.
+8. Verifique a pasta **/public/report**. Você tem 3 arquivos, `hello_world.pdf`, `hello_world.rtf` e `hello_world.xml`.
 
-**Below the code you will use in your route.php**
+**Copie o código abaixo para seu arquivo route.php**
 
 ```php
 use JasperPHP\JasperPHP;
@@ -248,12 +239,12 @@ Route::get('/reports', function () {
         )->execute();
 });
 ```
-In this example we generate reports pdf, rtf and xml.
+Neste exemplo nós geramos 3 arquivos: pdf, rtf and xml.
 
 
-###Reports from a xml in PHP/Laravel 5.*
+###Relatórios a partir de um xml em PHP/Laravel 5.*
 
-See how easy it is to generate a report with a source an XML file:
+Veja como é fácil gerar um relatório com uma origem de um arquivo XML
 
 ```php
 
@@ -288,20 +279,20 @@ public function xmlToPdf()
         unlink($output.'.'.$ext);
     }
 ```
-**Note:** 
+**Nota:** 
 
-To use the example above you must copy the sample files located at:
+Para usar os exemplos acima você precisa de uma cópia dos arquivos localizados em:
 
 **\vendor\copam\phpjasper\examples\CancelAck.jrxml** 
-and
+e
 **\vendor\copam\phpjasper\examples\CancelAck.xml** 
-to folder:
+para a pasta:
 **\public\report** 
 
 
-###Reports from a JSON File in PHP/Laravel 5.*
+###Relatórios a partir de um arquivo JSON em PHP/Laravel 5.*
 
-See how easy it is to generate a report with a source an JSON file:
+Veja como é fácil gerar um relatório com uma fonte de um arquivo JSON:
 
 ```php
 
@@ -336,43 +327,48 @@ public function jsonToPdf()
         unlink($output.'.'.$ext);
     }
 ```
-**Note:**
+**Nota:**
 
-To use the example above you must copy the sample files located at:
+Para usar os exemplos acima você precisa de uma cópia dos arquivos localizados em:
 
 **\vendor\copam\phpjasper\examples\json.jrxml**
-and
+e
 **\vendor\copam\phpjasper\examples\contacts.json**
-to folder:
+para a pasta:
 **\public\report**
 
 
 ###MySQL
 
-We ship the [MySQL connector](http://dev.mysql.com/downloads/connector/j/) (v5.1.39) in the `/src/JasperStarter/jdbc/` directory.
+Nós incluimos [MySQL connector](http://dev.mysql.com/downloads/connector/j/) (v5.1.39) na pasta `/src/JasperStarter/jdbc/`
 
 ###PostgreSQL
 
-We ship the [PostgreSQL](https://jdbc.postgresql.org/) (v9.4-1203) in the `/src/JasperStarter/jdbc/` directory.
+Nós incluimos [PostgreSQL](https://jdbc.postgresql.org/) (v9.4-1203) na pasta`/src/JasperStarter/jdbc/`
+
+###MSSQL
+
+[Microsoft JDBC Drivers 6.0, 4.2, 4.1, and 4.0 for SQL Server
+](https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774).
 
 ##Performance
 
-Depends on the complexity, amount of data and the resources of your machine (let me know your use case).
+Varia de acordo com o tamanho do seu relatório
 
-I have a report that generates a *Invoice* with a DB connection, images and multiple pages and it takes about **3/4 seconds** to process. I suggest that you use a worker to generate the reports in the background.
+##Agradecimentos
 
-##Thanks
+A [Cenote GmbH](http://www.cenote.de/) por [JasperStarter](http://jasperstarter.sourceforge.net/).
 
-Thanks to [Cenote GmbH](http://www.cenote.de/) for the [JasperStarter](http://jasperstarter.sourceforge.net/) tool.
+A [JetBrains](https://www.jetbrains.com/) pelo [PhpStorm](https://www.jetbrains.com/phpstorm/) e todas as ótimas soluções.
 
-##Questions?
+##Dúvidas?
 
-Open a [Issue](https://github.com/copam/phpjasper/issues) 
+Abra uma [Issue](https://github.com/copam/phpjasper/issues), ou pesquise por Issues antigas.
 
-##License
+##Licença
 
 MIT
 
-##Contribute
+##Contribuição
 
-Contribute to the community PHP and Laravel, feel free to contribute, make a fork!!
+Contribua com a comunidade PHP e Laravel, fique a vontade para fazer um fork!!
