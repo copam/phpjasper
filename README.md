@@ -135,7 +135,7 @@ $jasper->process(
 )->execute();
 ```
 
-Now check the examples folder! :) Great right? You now have 2 files, `hello_world.pdf` and `hello_world.rtf`.
+Agora olhe a pasta examples! :) Ótimo trabalho? Você tem  2 arquivos, `hello_world.pdf` e `hello_world.rtf`.
 
 Check the *API* of the  `compile` and `process` functions in the file `src/JasperPHP/JasperPHP.php` file.
 
