@@ -12,7 +12,7 @@ class JasperPHP
     protected $formats = array('pdf', 'rtf', 'xls', 'xlsx', 'docx', 'odt', 'ods', 'pptx', 'csv', 'html', 'xhtml', 'xml', 'jrprint');
     protected $resource_directory; //Path to report resource dir or jar file
 
-    function __construct($resource_dir = false)
+    function __construct($resource_dir = false,$lang = " LANG=pt_BR.UTF-8 ")
     {
         $this->path_executable = __DIR__ . '/../JasperStarter/bin'; //Path to executable
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
@@ -26,6 +26,8 @@ class JasperPHP
 
             $this->resource_directory = $resource_dir;
         }
+
+        $this->executable = ($this->windows) ? $this->executable : $lang.$this->executable;
     }
 
     public static function __callStatic($method, $parameters)
