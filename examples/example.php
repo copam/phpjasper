@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require __DIR__ . '/../src/JasperPHP/JasperPHP.php';
 
@@ -6,6 +6,7 @@ $outputPdfRtf = __DIR__;
 $jasperFile = __DIR__ . '/hello_world.jasper';
 $jrxmlFile = __DIR__ . '/hello_world.jrxml';
 $jrxmlParamsFile = __DIR__ . '/hello_world_params.jrxml';
+$imagePath = __DIR__ . '/jasper.png';
 
 $jasper = new JasperPHP\JasperPHP;
 
@@ -14,9 +15,15 @@ $jasper->compile($jrxmlFile)->execute();
 
 // processing jasper file into pdf and rtf
 $jasper->process(
-    $jasperFile,
+    $jrxmlParamsFile,
     $outputPdfRtf,
-    array("pdf", "rtf")
+	array("pdf", "rtf"),
+	array(
+	  'myString' => utf8_decode('Hello world :D ôéãìü'),
+	  'myInt' => 10.0 ,
+	  'myDate' => date("Y-m-d"),
+	  'myImage' => $imagePath
+	)
 )->execute();
 
 // Listing Parameters of jasper file
