@@ -5,6 +5,7 @@ namespace JasperPHP;
 class JasperPHP
 {
     protected $executable = 'jasperstarter'; //executable jasperstarter
+	protected $lang;
     protected $path_executable;
     protected $the_command;
     protected $windows = false;
@@ -12,8 +13,9 @@ class JasperPHP
     protected $formats = array('pdf', 'rtf', 'xls', 'xlsx', 'docx', 'odt', 'ods', 'pptx', 'csv', 'html', 'xhtml', 'xml', 'jrprint');
     protected $resource_directory; //Path to report resource dir or jar file
 
-    function __construct($resource_dir = false,$lang = " LANG=pt_BR.UTF-8 ")
+    function __construct($resource_dir = false, $lang = "pt_BR.UTF-8" )
     {
+		$this->lang = $lang;
         $this->path_executable = __DIR__ . '/../JasperStarter/bin'; //Path to executable
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
             $this->windows = true;
@@ -27,7 +29,6 @@ class JasperPHP
             $this->resource_directory = $resource_dir;
         }
 
-        $this->executable = ($this->windows) ? $this->executable : $lang.$this->executable;
     }
 
     public static function __callStatic($method, $parameters)
@@ -44,7 +45,7 @@ class JasperPHP
         if (is_null($input_file) || empty($input_file))
             throw new \Exception('Arquivo não encontrado!', 1);
 
-        $command = ($this->windows) ? $this->executable : './' . $this->executable;
+        $command = ($this->windows) ? $this->executable :  'LANG=' . $this->lang . ' ./' . $this->executable;
 
         $command .= ' compile ';
 
@@ -73,8 +74,8 @@ class JasperPHP
                 throw new \Exception('Formato inválido!', 1);
         }
 
-        $command = ($this->windows) ? $this->executable : './' . $this->executable;
-
+        $command = ($this->windows) ? $this->executable :  'LANG=' . $this->lang . ' ./' . $this->executable;
+		
         $command .= ($locale) ? " --locale $locale" : '';
 
         $command .= ' process ';
@@ -154,7 +155,6 @@ class JasperPHP
         }
 
         $this->the_command = $command;
-
         return $this;
     }
 
@@ -163,7 +163,7 @@ class JasperPHP
         if (is_null($input_file) || empty($input_file))
             throw new \Exception('Arquivo não encontrado!', 1);
 
-        $command = ($this->windows) ? $this->executable : './' . $this->executable;
+        $command = ($this->windows) ? $this->executable :  'LANG=' . $this->lang . ' ./' . $this->executable;
 
         $command .= ' list_parameters ';
 
