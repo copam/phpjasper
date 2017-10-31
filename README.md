@@ -13,7 +13,7 @@ Este pacote é a solução perfeita para compilar e processar relatórios Jasper
 
 Alguma vez você precisou de um relatório complexo em PHP para seu sistema web?
 
-Eu já precisei e fui em busca de algumas soluções, a maioria delas é complexa e você precisa escrever *HTML* + *CSS* para gerar um *PDF*, isso não faz sentido, além de ser muito trabalhoso :)
+A maioria das soluções é complexa e você precisa escrever *HTML* + *CSS* para gerar um *PDF*, isso não faz sentido, além de ser muito trabalhoso :)
 
 Apresento para vocês **JasperReports** a melhor solução open source que existe para relatórios.
 
