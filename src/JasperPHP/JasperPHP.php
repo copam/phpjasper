@@ -154,7 +154,7 @@ class JasperPHP
             }
         }
 
-        $this->the_command = $command;
+        $this->the_command = $command . ' 2>&1';
         return $this;
     }
 
@@ -197,7 +197,7 @@ class JasperPHP
         }
 
         if ($return_var != 0)
-            throw new \Exception('Seu relatório tem um erro e não pode ser processado! Execute a função `output();` e rode o comando gerado no seu console/terminal.', 1);
+            throw new \Exception("{$output[0]}", 1);
 
         return $output;
     }
