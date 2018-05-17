@@ -17,7 +17,7 @@ class JasperPHPServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app['jasperphp'] = $this->app->share(function () {
+        $this->app['jasperphp'] = $this->app->singleton('JasperPHP',function () {
             return new JasperPHP;
         });
 
